@@ -1,0 +1,75 @@
+﻿<Window x:Class="Assignment_2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Assignment_2"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+
+        <!--Jag vill ha två st kolumner där den ena är lite större-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            
+            <!--Ena kolumnen tar upp så myvket utrymme som behövs, den andra tar upp resterande utrymme-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*"/>
+             </Grid.RowDefinitions>
+
+             <StackPanel Grid.Row="0" Margin="20">
+                <TextBlock Text="Firstname" Style="{StaticResource label}"/>
+                <TextBox x:Name="tb_FirstName" Style="{StaticResource field}"/>
+                <TextBlock Text="Lastname" Style="{StaticResource label}"/>
+                <TextBox x:Name="tb_LastName" Style="{StaticResource field}"/>
+                <TextBlock Text="Email" Style="{StaticResource label}"/>
+                <TextBox x:Name="tb_Email" Style="{StaticResource field}"/>
+             </StackPanel>
+
+             <Button 
+                    x:Name="btn_Add"
+                    Click="btn_Add_Click"
+                    Grid.Row="1"
+                    Padding="35 8"
+                    HorizontalAlignment="Right" 
+                    VerticalAlignment="Bottom" 
+                    Margin="20" 
+                    Content="Save"/>
+
+        </Grid>
+
+         <ListView x:Name="lv_Contacts" Grid.Column="1" SelectionChanged="lv_Contacts_SelectionChanged" Margin="20" HorizontalContentAlignment="Stretch">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                     </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding FullName}"/>
+                        </StackPanel>
+
+                         <Button 
+                            Click="btn_Remove_Click"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Grid.Column="1" 
+                            FontFamily="Segoe MDL2 Assets" 
+                            Content="&#xE74D;" />
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+         </ListView>
+
+    </Grid>
+</Window>
